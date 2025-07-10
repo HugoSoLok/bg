@@ -1,246 +1,203 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Board Game Showcase</title>
+    <title>Board Game Showcase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --primary-color: #ff6f61;
+            --secondary-color: #4a90e2;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --modal-bg: rgba(0, 0, 0, 0.8);
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
+
         header {
-            background-color: #ff6f61;
+            background-color: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
         }
+
         section {
-            padding: 20px;
+            padding: 2rem;
         }
+
         h2 {
-            color: #ff6f61;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
-        .game-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
-        .game-item {
-            background-color: white;
+
+        .game-card {
+            background-color: var(--card-bg);
             border-radius: 10px;
-            padding: 10px;
-            width: 200px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
             cursor: pointer;
-            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .game-item img {
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .game-card img {
             width: 100%;
-            border-radius: 8px;
+            height: 150px;
+            object-fit: cover;
         }
+
+        .game-card .info {
+            padding: 1rem;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ranking-list li {
+            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .ranking-list li:hover {
+            background-color: #ffe5e0;
+        }
+
         .modal {
             display: none;
             position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--modal-bg);
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
         }
+
         .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            width: 80%;
+            background-color: white;
+            padding: 2rem;
             border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
         }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px; height: 30px;
+            font-size: 1rem;
             cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .game-card img {
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>🎲 Board Game Showcase</h1>
+        <p>Explore my favorite and owned board games!</p>
+    </header>
 
-<header>
-    <h1>Welcome to My Board Game Showcase</h1>
-</header>
+    <section>
+        <h2>🔥 Hotness Board Game</h2>
+        <div class="game-card" onclick="openModal('Hotness Game')">
+            <img src="hotness.jpg" alt="Hotness Game">
+            <div class="info">
+                <h3>Hotness Game</h3>
+                <p>A trending board game everyone is talking about!</p>
+            </div>
+        </div>
+    </section>
 
-<section id="hotness">
-    <h2>🔥 Hotness Board Game</h2>
-    <div class="game-item" onclick="openModal('hotness')">
-        <img src="hotness.jpg" alt="Hotness Game">
-        <p>Hotness Game Title</p>
+    <section>
+        <h2>🏆 My Top 10 Board Games</h2>
+        <ul class="ranking-list">
+            <li onclick="openModal('Game 1')">1. Game 1</li>
+            <li onclick="openModal('Game 2')">2. Game 2</li>
+            <li onclick="openModal('Game 3')">3. Game 3</li>
+            <li onclick="openModal('Game 4')">4. Game 4</li>
+            <li onclick="openModal('Game 5')">5. Game 5</li>
+            <li onclick="openModal('Game 6')">6. Game 6</li>
+            <li onclick="openModal('Game 7')">7. Game 7</li>
+            <li onclick="openModal('Game 8')">8. Game 8</li>
+            <li onclick="openModal('Game 9')">9. Game 9</li>
+            <li onclick="openModal('Game 10')">10. Game 10</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>📚 My Collection</h2>
+        <div class="game-grid">
+            <div class="game-card" onclick="openModal('Collection Game 1')">
+                <img src="collection1.jpg" alt="Collection Game 1">
+                <div class="info">
+                    <h3>Collection Game 1</h3>
+                    <p>Owned and played.</p>
+                </div>
+            </div>
+            <div class="game-card" onclick="openModal('Collection Game 2')">
+                <img src="collection2.jpg" alt="Collection Game 2">
+                <div class="info">
+                    <h3>Collection Game 2</h3>
+                    <p>Owned and played.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2 id="modalTitle">Game Title</h2>
+            <p><strong>Type:</strong> Strategy</p>
+            <p><strong>Score:</strong> 8.5/10</p>
+            <p><strong>Description:</strong> A short description of the game.</p>
+            <p><strong>Comments:</strong> Fun and engaging gameplay!</p>
+        </div>
     </div>
-</section>
 
-<section id="top10">
-    <h2>🏆 My Top 10 Board Games</h2>
-    <div class="game-list">
-        <!-- Top 10 games -->
-        
-        <div class="game-item" onclick="openModal('top1')">
-            <img src="top1.jpg" alt="Top Game 1">
-            <p>Top Game 1</p>
-        </div>
-        
+    <script>
+        function openModal(gameName) {
+            document.getElementById('modalTitle').textContent = gameName;
+            document.getElementById('gameModal').style.display = 'flex';
+        }
 
-        <div class="game-item" onclick="openModal('top2')">
-            <img src="top2.jpg" alt="Top Game 2">
-            <p>Top Game 2</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top3')">
-            <img src="top3.jpg" alt="Top Game 3">
-            <p>Top Game 3</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top4')">
-            <img src="top4.jpg" alt="Top Game 4">
-            <p>Top Game 4</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top5')">
-            <img src="top5.jpg" alt="Top Game 5">
-            <p>Top Game 5</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top6')">
-            <img src="top6.jpg" alt="Top Game 6">
-            <p>Top Game 6</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top7')">
-            <img src="top7.jpg" alt="Top Game 7">
-            <p>Top Game 7</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top8')">
-            <img src="top8.jpg" alt="Top Game 8">
-            <p>Top Game 8</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top9')">
-            <img src="top9.jpg" alt="Top Game 9">
-            <p>Top Game 9</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('top10')">
-            <img src="top10.jpg" alt="Top Game 10">
-            <p>Top Game 10</p>
-        </div>
-        
-    </div>
-</section>
-
-<section id="collection">
-    <h2>🎲 My Board Game Collection</h2>
-    <div class="game-list">
-        <!-- Collection games -->
-        
-        <div class="game-item" onclick="openModal('collection1')">
-            <img src="collection1.jpg" alt="Collection Game 1">
-            <p>Collection Game 1</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection2')">
-            <img src="collection2.jpg" alt="Collection Game 2">
-            <p>Collection Game 2</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection3')">
-            <img src="collection3.jpg" alt="Collection Game 3">
-            <p>Collection Game 3</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection4')">
-            <img src="collection4.jpg" alt="Collection Game 4">
-            <p>Collection Game 4</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection5')">
-            <img src="collection5.jpg" alt="Collection Game 5">
-            <p>Collection Game 5</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection6')">
-            <img src="collection6.jpg" alt="Collection Game 6">
-            <p>Collection Game 6</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection7')">
-            <img src="collection7.jpg" alt="Collection Game 7">
-            <p>Collection Game 7</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection8')">
-            <img src="collection8.jpg" alt="Collection Game 8">
-            <p>Collection Game 8</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection9')">
-            <img src="collection9.jpg" alt="Collection Game 9">
-            <p>Collection Game 9</p>
-        </div>
-        
-
-        <div class="game-item" onclick="openModal('collection10')">
-            <img src="collection10.jpg" alt="Collection Game 10">
-            <p>Collection Game 10</p>
-        </div>
-        
-    </div>
-</section>
-
-<!-- Modal -->
-<div id="gameModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle">Game Title</h2>
-        <img id="modalImage" src="" alt="Game Image" style="width:100%; border-radius:10px;">
-        <p><strong>Type:</strong> Strategy</p>
-        <p><strong>Score:</strong> 8.5/10</p>
-        <p><strong>Description:</strong> A short description of the game.</p>
-        <p><strong>Comments:</strong> Fun and engaging gameplay!</p>
-    </div>
-</div>
-
-<script>
-    function openModal(gameId) {
-        document.getElementById('gameModal').style.display = 'block';
-        document.getElementById('modalTitle').innerText = gameId;
-        document.getElementById('modalImage').src = gameId + '.jpg';
-    }
-
-    function closeModal() {
-        document.getElementById('gameModal').style.display = 'none';
-    }
-</script>
-
+        function closeModal() {
+            document.getElementById('gameModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
