@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Board Game Showcase</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #333;
+        }
+        header {
+            background-color: #ff6f61;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+        }
+        h2 {
+            color: #ff6f61;
+        }
+        .game-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .game-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            text-align: center;
+        }
+        .game-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Board Game Showcase</h1>
+</header>
+
+<section id="hotness">
+    <h2>🔥 Hotness Board Game</h2>
+    <div class="game-item" onclick="openModal('hotness')">
+        <img src="hotness.jpg" alt="Hotness Game">
+        <p>Hotness Game Title</p>
+    </div>
+</section>
+
+<section id="top10">
+    <h2>🏆 My Top 10 Board Games</h2>
+    <div class="game-list">
+        <!-- Top 10 games -->
+        
+        <div class="game-item" onclick="openModal('top1')">
+            <img src="top1.jpg" alt="Top Game 1">
+            <p>Top Game 1</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top2')">
+            <img src="top2.jpg" alt="Top Game 2">
+            <p>Top Game 2</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top3')">
+            <img src="top3.jpg" alt="Top Game 3">
+            <p>Top Game 3</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top4')">
+            <img src="top4.jpg" alt="Top Game 4">
+            <p>Top Game 4</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top5')">
+            <img src="top5.jpg" alt="Top Game 5">
+            <p>Top Game 5</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top6')">
+            <img src="top6.jpg" alt="Top Game 6">
+            <p>Top Game 6</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top7')">
+            <img src="top7.jpg" alt="Top Game 7">
+            <p>Top Game 7</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top8')">
+            <img src="top8.jpg" alt="Top Game 8">
+            <p>Top Game 8</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top9')">
+            <img src="top9.jpg" alt="Top Game 9">
+            <p>Top Game 9</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('top10')">
+            <img src="top10.jpg" alt="Top Game 10">
+            <p>Top Game 10</p>
+        </div>
+        
+    </div>
+</section>
+
+<section id="collection">
+    <h2>🎲 My Board Game Collection</h2>
+    <div class="game-list">
+        <!-- Collection games -->
+        
+        <div class="game-item" onclick="openModal('collection1')">
+            <img src="collection1.jpg" alt="Collection Game 1">
+            <p>Collection Game 1</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection2')">
+            <img src="collection2.jpg" alt="Collection Game 2">
+            <p>Collection Game 2</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection3')">
+            <img src="collection3.jpg" alt="Collection Game 3">
+            <p>Collection Game 3</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection4')">
+            <img src="collection4.jpg" alt="Collection Game 4">
+            <p>Collection Game 4</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection5')">
+            <img src="collection5.jpg" alt="Collection Game 5">
+            <p>Collection Game 5</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection6')">
+            <img src="collection6.jpg" alt="Collection Game 6">
+            <p>Collection Game 6</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection7')">
+            <img src="collection7.jpg" alt="Collection Game 7">
+            <p>Collection Game 7</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection8')">
+            <img src="collection8.jpg" alt="Collection Game 8">
+            <p>Collection Game 8</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection9')">
+            <img src="collection9.jpg" alt="Collection Game 9">
+            <p>Collection Game 9</p>
+        </div>
+        
+
+        <div class="game-item" onclick="openModal('collection10')">
+            <img src="collection10.jpg" alt="Collection Game 10">
+            <p>Collection Game 10</p>
+        </div>
+        
+    </div>
+</section>
+
+<!-- Modal -->
+<div id="gameModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">Game Title</h2>
+        <img id="modalImage" src="" alt="Game Image" style="width:100%; border-radius:10px;">
+        <p><strong>Type:</strong> Strategy</p>
+        <p><strong>Score:</strong> 8.5/10</p>
+        <p><strong>Description:</strong> A short description of the game.</p>
+        <p><strong>Comments:</strong> Fun and engaging gameplay!</p>
+    </div>
+</div>
+
+<script>
+    function openModal(gameId) {
+        document.getElementById('gameModal').style.display = 'block';
+        document.getElementById('modalTitle').innerText = gameId;
+        document.getElementById('modalImage').src = gameId + '.jpg';
+    }
+
+    function closeModal() {
+        document.getElementById('gameModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
